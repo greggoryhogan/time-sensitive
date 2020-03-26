@@ -11,7 +11,6 @@ function wc_edd_options_page() { ?>
     <div class="wrap">
         <?php screen_icon(); ?>
         <h1>WooCommerce to Easy Digital Downloads</h1>
-
         <h2>Delete Existing EDD Data</h2>
         <p>Delete existing EDD products and users so you can import fresh data. These actions cannot be undone.</p>
         <?php 
@@ -24,13 +23,13 @@ function wc_edd_options_page() { ?>
         if(isset($_GET['delete_edd_customers'])) {
             delete_edd_customers();
         } else {
-            echo '<a href="'.get_bloginfo('url').'/wp-admin/admin.php?page=wc-to-edd&delete_edd_customers=1" class="wcedd_button">Delete Customers</a>'; 
+            echo '<a href="'.get_bloginfo('url').'/wp-admin/admin.php?page=wc-to-edd&delete_edd_customers=1" class="wcedd_button">Delete Customers</a> '; 
         } ?>
         <?php 
         if(isset($_GET['delete_edd_payment_history'])) {
             delete_payment_history();
         } else {
-            echo '<a href="'.get_bloginfo('url').'/wp-admin/admin.php?page=wc-to-edd&delete_edd_payment_history=1" class="wcedd_button">Delete Payment History</a>'; 
+            echo '<a href="'.get_bloginfo('url').'/wp-admin/admin.php?page=wc-to-edd&delete_edd_payment_history=1" class="wcedd_button">Delete Payment History</a> '; 
         } ?>
 
         <div class="wcedd-spacer"></div>
@@ -48,21 +47,38 @@ function wc_edd_options_page() { ?>
         ?>
       
         <?php 
+        if(isset($_GET['update_roles'])) {
+            update_roles();
+        }
+        else {
+            echo '<a href="'.get_bloginfo('url').'/wp-admin/admin.php?page=wc-to-edd&update_roles=1" class="wcedd_button">Update User Roles</a> ';
+        }
         if(isset($_GET['create_csv'])) {
             create_edd_csv();
         } else {
-            echo '<a href="'.get_bloginfo('url').'/wp-admin/admin.php?page=wc-to-edd&create_csv=1" class="wcedd_button">1. Create CSV of Products</a> ';
+            echo '<a href="'.get_bloginfo('url').'/wp-admin/admin.php?page=wc-to-edd&create_csv=1" class="wcedd_button">Create CSV of Products</a> ';
         }
         if(isset($_GET['create_customers'])) {
             create_edd_customers();
         } else {
-            echo '<a href="'.get_bloginfo('url').'/wp-admin/admin.php?page=wc-to-edd&create_customers=1" class="wcedd_button">2. Create Customers</a> ';
+            echo '<a href="'.get_bloginfo('url').'/wp-admin/admin.php?page=wc-to-edd&create_customers=1" class="wcedd_button">Create Customers</a> ';
         }
         if(isset($_GET['create_orders'])) {
             create_edd_orders();
         } else {
-            echo '<a href="'.get_bloginfo('url').'/wp-admin/admin.php?page=wc-to-edd&create_orders=1" class="wcedd_button">3. Create CSV of Payment History</a>';
+            echo '<a href="'.get_bloginfo('url').'/wp-admin/admin.php?page=wc-to-edd&create_orders=1" class="wcedd_button">Create CSV of Payment History</a> ';
         }
+        if(isset($_GET['convert_content'])) {
+            convert_content();
+        } else {
+            echo '<a href="'.get_bloginfo('url').'/wp-admin/admin.php?page=wc-to-edd&convert_content=1" class="wcedd_button">4. Update Downloads HTML Content</a> ';
+        }
+        /*if(isset($_GET['update_images'])) {
+            update_images();
+        } else {
+            echo '<a href="'.get_bloginfo('url').'/wp-admin/admin.php?page=wc-to-edd&update_images=1" class="wcedd_button">4. Update Images</a> ';
+        }*/
+        
         ?>
 
         <p>Looking for your .csv files?<br>Products file: <?php echo '<a href="'.$products_file.'" target="_blank">'.$products_file.'</a>'; ?><br>Payments file: <?php echo '<a href="'.$payments_file.'" target="_blank">'.$payments_file.'</a>'; ?></p>
